@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ChatDatePipe } from './pipe/chat-date.pipe';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { ChatDatePipe } from './pipe/chat-date.pipe';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     NgbModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
