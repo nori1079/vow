@@ -2,7 +2,7 @@
   max-width: 960px;
   height: 100%;
   margin: 0 auto;
-  padding: 10px;
+  padding: 10px 0;
   background-color: #fff;
   border-left: 1px solid #DDDDDD;
   border-right: 1px solid #DDDDDD;
@@ -10,11 +10,11 @@
   overflow: scroll;
 }
 
-.page section{ /*追加*/
+.page section{
   margin: 0 10px 30px;
 }
 
-.page .page-footer{ /*追加*/
+.page .page-footer{
   display: block;
   position: fixed;
   margin: 0;
@@ -26,6 +26,7 @@
   background-color: #fff;
   border-top: 1px solid #DDDDDD;
 }
+
 
 .page .card .media-body {
   padding: 18px;
@@ -39,6 +40,20 @@
 .page .card .media-body h4.media-heading {
   color: #999999;
   font-size: 13px;
+}
+
+.page .card .media-body h4.media-heading .btn { /*追加*/
+  margin: 0 3px;
+}
+
+.page .card .media-body div.edit-buttons { /*追加*/
+  margin-top: 10px;
+  text-align: center;
+}
+
+.page .card .media-body div.edit-buttons .btn { /*追加*/
+  margin: 0 5px;
+  width: 100px;
 }
 
 .page .card .card-block {
