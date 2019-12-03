@@ -7,11 +7,13 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { ChatDatePipe } from './pipe/chat-date.pipe';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChatDatePipe
   ],
   imports: [
     BrowserModule,
