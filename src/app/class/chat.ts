@@ -34,10 +34,24 @@ export class Comment {
     return Object.assign({}, this);
   }
 
+  // 取得した日付を反映し、更新フラグをつける
   setData(date: number, key: string): Comment {
     this.date = date;
     this.key = key;
     this.editflag = false;
+    return this;
+  }
+}
+
+export class Session { // 追加
+  login: boolean;
+
+  constructor() {
+    this.login = false;
+  }
+
+  reset(): Session { // 追加
+    this.login = false;
     return this;
   }
 }
