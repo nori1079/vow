@@ -20,7 +20,7 @@ export class Comment {
   content: string;
   date: number;
   key?: string;
-  edit_flag?: boolean;
+  editflag?: boolean;
 
   constructor(user: User, content: string) {
     this.user = user;
@@ -37,7 +37,7 @@ export class Comment {
   setData(date: number, key: string): Comment {
     this.date = date;
     this.key = key;
-    this.edit_flag = false;
+    this.editflag = false;
     return this;
   }
 }
