@@ -11,13 +11,22 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
+import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  { path: 'test', redirectTo: '', pathMatch: 'full' },
+  { path: '', component: ChatComponent },
+  { path: '**', component: PageNotFoundComponent },
+];
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    PageNotFoundComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -27,6 +36,7 @@ import { ChatComponent } from './chat/chat.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
