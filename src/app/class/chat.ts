@@ -55,3 +55,20 @@ export class Session { // 追加
     return this;
   }
 }
+export class Password { // 追加
+  email: string;
+  password: string;
+  passwordconfirmation: string;
+
+  constructor() {
+    this.email = '';
+    this.password = '';
+    this.passwordconfirmation = '';
+  }
+
+  reset(): void {
+    this.email = '';
+    this.password = '';
+    this.passwordconfirmation = '';
+  }
+}

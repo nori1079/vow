@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SessionService } from 'src/app/core/service/session.service';
+import { SessionService } from '../../core/service/session.service';
+import { Password } from '../../class/chat';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +10,14 @@ import { SessionService } from 'src/app/core/service/session.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private sessionService: SessionService) { } // 追加
+  public account = new Password(); // 追加
+
+  constructor(private sessionService: SessionService) { }
 
   ngOnInit() { }
 
-  submitLogin() { // 追加
-    this.sessionService.login();
+  submitLogin(e: Event) {
+    e.preventDefault();
+    this.sessionService.login(this.account); // 変更
   }
 }
