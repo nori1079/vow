@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "vow-c81e4"
+    "default": "vow-c81e4",
+    "exit": "voww-8f5ba"
   }
 }
