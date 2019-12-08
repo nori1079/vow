@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs'; // 追加
-import { Router } from '@angular/router'; // 追加
-import { Password } from '../../class/chat';
-import { Session } from '../../class/chat';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Password, Session } from '../../class/chat';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +10,12 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class SessionService {
 
   public session = new Session();
-  public sessionSubject = new Subject<Session>(); // 追加
-  public sessionState = this.sessionSubject.asObservable(); // 追加
+  public sessionSubject = new Subject<Session>();
+  public sessionState = this.sessionSubject.asObservable();
 
   constructor(
     private router: Router,
-    private afAuth: AngularFireAuth
-  ) { } // 追加
+    private afAuth: AngularFireAuth) { }
 
   login(account: Password): void { // 変更
     this.afAuth
