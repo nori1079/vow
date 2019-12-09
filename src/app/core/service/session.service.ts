@@ -101,8 +101,8 @@ export class SessionService {
     this.afAuth
       .auth
       .createUserWithEmailAndPassword(account.email, account.password) // アカウント作成
-      .then(_auth => {
-        auth = _auth;
+      .then(_AUTH => {
+        auth = _AUTH;
         return auth.user.sendEmailVerification(); // メールアドレス確認
       })
       .then(() => { // 追加

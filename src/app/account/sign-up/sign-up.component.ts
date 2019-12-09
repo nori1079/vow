@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
   submitSignUp(e: Event): void {
     e.preventDefault();
     // パスワード確認
-    if (this.account.password !== this.account.PSSWORD_CONFIRMATION) {
+    if (this.account.password !== this.account.PASSWORD_CONFIRMATION) {
       alert('パスワードが異なります。');
       return;
     }

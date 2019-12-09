@@ -63,19 +63,19 @@ export class Password {
   name: string; // 追加
   email: string;
   password: string;
-  PSSWORD_CONFIRMATION: string;
+  PASSWORD_CONFIRMATION: string;
 
   constructor() {
     this.name = ''; // 追加
     this.email = '';
     this.password = '';
-    this.PSSWORD_CONFIRMATION = '';
+    this.PASSWORD_CONFIRMATION = '';
   }
 
   reset(): void {
     this.name = ''; // 追加
     this.email = '';
     this.password = '';
-    this.PSSWORD_CONFIRMATION = '';
+    this.PASSWORD_CONFIRMATION = '';
   }
 }

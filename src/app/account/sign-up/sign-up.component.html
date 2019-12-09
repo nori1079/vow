@@ -9,7 +9,7 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="account.password" #password="ngModel" autocomplete="new-password" required>
       <label for="confirmationPassword" class="sr-only">Password</label>
-      <input type="password" name="password_confirmation" id="confirmationPassword" class="form-control" placeholder="Password Confirmation" [(ngModel)]="account.PSSWORD_CONFIRMATION" #password_confirmation="ngModel" autocomplete="new-password" required>
+      <input type="password" name="password_confirmation" id="confirmationPassword" class="form-control" placeholder="Password Confirmation" [(ngModel)]="account.PASSWORD_CONFIRMATION" #password_confirmation="ngModel" autocomplete="new-password" required>
       <button class="btn btn-lg btn-success btn-block" type="submit" [disabled]="!signUpForm.form.valid">
         SIGN UP
       </button>
