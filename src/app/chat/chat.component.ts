@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Comment, User } from '../class/chat';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
-const CURRENT_USER: User = new User(1, 'Tanaka Jiro');
-const ANOTHER_USER: User = new User(2, 'Suzuki Taro');
+import { Comment, User } from '../class/chat';
+import { SessionService } from '../core/service/session.service'; // 追加
+
+// const CURRENT_USER: User = new User(1, 'Tanaka Jiro'); // 削除
+// const ANOTHER_USER: User = new User(2, 'Suzuki Taro'); // 削除
 
 @Component({
   selector: 'app-chat',
@@ -16,14 +18,21 @@ export class ChatComponent implements OnInit {
 
   public content = '';
   public comments: Observable<Comment[]>;
-  public current_user = CURRENT_USER;
+  public CURRENT_USER: User; // 変更
 
   // DI（依存性注入する機能を指定）
-  constructor(private db: AngularFirestore) {
+  constructor(
+    private db: AngularFirestore,
+    private session: SessionService) { // 追加
+    this.session // 追加
+      .sessionState
+      .subscribe(data => {
+        this.CURRENT_USER = data.user;
+      });
   }
 
-  ngOnInit() { // コンストラクタの内容を移す
-    this.comments = this.db // thisを追加
+  ngOnInit() {
+    this.comments = this.db
       .collection<Comment>('comments', ref => {
         return ref.orderBy('date', 'asc');
       })
@@ -33,9 +42,9 @@ export class ChatComponent implements OnInit {
           // 日付をセットしたコメントを返す
           const data = action.payload.doc.data() as Comment;
           const key = action.payload.doc.id;
-          const comment_data = new Comment(data.user, data.content);
-          comment_data.setData(data.date, key);
-          return comment_data;
+          const COMMENT_DATE = new Comment(data.user, data.content);
+          COMMENT_DATE.setData(data.date, key);
+          return COMMENT_DATE;
         })));
   }
 
@@ -45,14 +54,14 @@ export class ChatComponent implements OnInit {
     if (comment) {
       this.db
         .collection('comments')
-        .add(new Comment(this.current_user, comment).deserialize());
+        .add(new Comment(this.CURRENT_USER, comment).deserialize());
       this.content = '';
     }
   }
 
   // 編集フィールドの切り替え
   toggleEditComment(comment: Comment) {
-    comment.editflag = (!comment.editflag);
+    comment.EDIT_FLAG = (!comment.EDIT_FLAG);
   }
 
   // コメントを更新する
@@ -66,7 +75,7 @@ export class ChatComponent implements OnInit {
       })
       .then(() => {
         alert('コメントを更新しました');
-        comment.editflag = false;
+        comment.EDIT_FLAG = false;
       });
   }
 

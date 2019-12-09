@@ -1,26 +1,19 @@
-<!DOCTYPE html>
 <div class="page">
   <section class="card">
     <form class="form-signup" (ngSubmit)="submitSignUp($event)" #signUpForm="ngForm">
-      <!-- 追加 -->
       <h2 class="form-signup-heading">アカウント作成</h2>
-      <label for="inputEmail" class="sr-only">
-        Email address
-      </label>
-      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" [(ngModel)]="account.email" #email="ngModel" autocomplete="username email" required autofocus><!-- #email, name, autocompleteを追加 -->
-      <label for="inputPassword" class="sr-only">
-        Password
-      </label>
-      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="account.password" #password="ngModel" autocomplete="new-password" required><!-- #password, name, autocompleteを追加 -->
-      <label for="confirmationPassword" class="sr-only">
-        Password
-      </label>
-      <input type="password" name="password_confirmation" id="confirmationPassword" class="form-control" placeholder="Password Confirmation" [(ngModel)]="account.passwordconfirmation" #password_confirmation="ngModel" autocomplete="new-password" required><!-- #password_confirmation, name, autocompleteを追加 -->
+      <label for="inputName" class="sr-only">Name</label> <!-- 追加 -->
+      <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" [(ngModel)]="account.name" #name="ngModel" autocomplete="username" required autofocus>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" [(ngModel)]="account.email" #email="ngModel" autocomplete="username email" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="account.password" #password="ngModel" autocomplete="new-password" required>
+      <label for="confirmationPassword" class="sr-only">Password</label>
+      <input type="password" name="password_confirmation" id="confirmationPassword" class="form-control" placeholder="Password Confirmation" [(ngModel)]="account.PSSWORD_CONFIRMATION" #password_confirmation="ngModel" autocomplete="new-password" required>
       <button class="btn btn-lg btn-success btn-block" type="submit" [disabled]="!signUpForm.form.valid">
         SIGN UP
-      </button><!-- clickイベントを削除し、disabledを追加 -->
+      </button>
     </form>
-    <a routerLink="/account/login" class="signup-link">
-      ログインする
-    </a>
+    <a routerLink="/account/login" class="signup-link">ログインする</a>
   </section>
+</div>

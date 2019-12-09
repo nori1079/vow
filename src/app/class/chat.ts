@@ -1,12 +1,12 @@
 import * as moment from 'moment';
 
 export class User {
-  uid: number;
+  uid: string; // 変更(number -> string)
   name: string;
 
-  constructor(uid: number, name: string) {
-    this.uid = uid;
-    this.name = name;
+  constructor(uid?: string, name?: string) { // 変更
+    this.uid = (uid) ? uid : '';
+    this.name = (name) ? name : '';
   }
 
   deserialize() {
@@ -20,7 +20,7 @@ export class Comment {
   content: string;
   date: number;
   key?: string;
-  editflag?: boolean;
+  EDIT_FLAG?: boolean;
 
   constructor(user: User, content: string) {
     this.user = user;
@@ -38,37 +38,44 @@ export class Comment {
   setData(date: number, key: string): Comment {
     this.date = date;
     this.key = key;
-    this.editflag = false;
+    this.EDIT_FLAG = false;
     return this;
   }
 }
 
-export class Session { // 追加
+export class Session {
   login: boolean;
+  user: User; // 追加
 
   constructor() {
     this.login = false;
+    this.user = new User(); // 追加
   }
 
-  reset(): Session { // 追加
+  reset(): Session {
     this.login = false;
+    this.user = new User(); // 追加
     return this;
   }
 }
-export class Password { // 追加
+
+export class Password {
+  name: string; // 追加
   email: string;
   password: string;
-  passwordconfirmation: string;
+  PSSWORD_CONFIRMATION: string;
 
   constructor() {
+    this.name = ''; // 追加
     this.email = '';
     this.password = '';
-    this.passwordconfirmation = '';
+    this.PSSWORD_CONFIRMATION = '';
   }
 
   reset(): void {
+    this.name = ''; // 追加
     this.email = '';
     this.password = '';
-    this.passwordconfirmation = '';
+    this.PSSWORD_CONFIRMATION = '';
   }
 }
