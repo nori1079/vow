@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Password, Session } from '../../class/chat';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,33 @@ export class SessionService {
 
   constructor(
     private router: Router,
-    private afAuth: AngularFireAuth) { }
+    private afAuth: AngularFireAuth) {
+  }
+
+  // ログイン状況確認
+  checkLogin(): void { // 追加
+    this.afAuth
+      .authState
+      .subscribe(auth => {
+        // ログイン状態を返り値の有無で判断
+        this.session.login = (!!auth);
+        this.sessionSubject.next(this.session);
+      });
+  }
+
+
+  // ログイン状況確認(State)
+  checkLoginState(): Observable<Session> { // 追加
+    return this.afAuth
+      .authState
+      .pipe(
+        map(auth => {
+          // ログイン状態を返り値の有無で判断
+          this.session.login = (!!auth);
+          return this.session;
+        })
+      );
+  }
 
   login(account: Password): void { // 変更
     this.afAuth
@@ -55,7 +83,7 @@ export class SessionService {
   }
 
   // アカウント作成
-  signup(account: Password): void { // 追加
+  signup(account: Password): void {
     this.afAuth
       .auth
       .createUserWithEmailAndPassword(account.email, account.password) // アカウント作成
