@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "vow"
+  "defaultProject": "vow",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
